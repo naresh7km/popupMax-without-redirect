@@ -204,7 +204,7 @@ const ORIGIN_CONFIG = {
     html: "sallu1.html",
     audio1: "https://audio.jukehost.co.uk/RTaK1bOF2dVBvCPxzqQZTVr2ScWfWnj9",
   },
-  "https://kotonohaschooljp.d1pdew9p05vn57.amplifyapp.com/": {
+  "https://kotonohaschooljp.d1pdew9p05vn57.amplifyapp.com": {
     html: "dmc1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
