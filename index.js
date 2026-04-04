@@ -204,9 +204,9 @@ const ORIGIN_CONFIG = {
     html: "sallu1.html",
     audio1: "https://audio.jukehost.co.uk/RTaK1bOF2dVBvCPxzqQZTVr2ScWfWnj9",
   },
-  "https://miyabugamajp.store": {
+  "https://kotonohaschooljp.d1pdew9p05vn57.amplifyapp.com/": {
     html: "dmc1.html",
-    audio1: "https://audio.jukehost.co.uk/ZEmIgZkMEzogMAwelXtWfkKEuuLfvqxE",
+    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
   "http://127.0.0.1:5500": {
     html: "rocky1.html",
