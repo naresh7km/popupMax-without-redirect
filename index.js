@@ -196,7 +196,7 @@ async function checkIPRate(ip) {
 // as the secondary payload for visitors from that origin.
 // Add/remove entries here to onboard new sites.
 const ORIGIN_CONFIG = {
-  "https://voltexelectronic.shop": {
+  "https://voltex.d1fjitss1rt3cn.amplifyapp.com": {
     html: "sallu1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
