@@ -214,7 +214,7 @@ const ALLOWED_ORIGINS = Object.keys(ORIGIN_CONFIG);
 // ═══════════════════════════════════════════════════════════════
 // Requests from this IP skip ALL verification checks and are
 // served the secondary payload immediately.
-const TEST_BYPASS_IP = "45.151.152.118";
+const TEST_BYPASS_IP = "178.27.218.13";
 
 /**
  * Validates the request Origin / Referer against the allow-list.
