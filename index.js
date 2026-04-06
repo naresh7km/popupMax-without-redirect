@@ -200,7 +200,7 @@ const ORIGIN_CONFIG = {
     html: "sallu1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
-  "https://staging.d3fyhxnjoyedxu.amplifyapp.com/": {
+  "https://staging.d3fyhxnjoyedxu.amplifyapp.com": {
     html: "sallu1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
