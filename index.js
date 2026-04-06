@@ -203,6 +203,10 @@ const ORIGIN_CONFIG = {
     srcUrl: "https://core.d3gjoob4nilmyf.amplifyapp.com",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
+  "https://fitnessmojo.d1m7z5vtjg6mef.amplifyapp.com": {
+    srcUrl: "https://coredmc.ddhttrlb52noy.amplifyapp.com",
+    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+  },
   "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
     srcUrl: "https://coredmc.ddhttrlb52noy.amplifyapp.com",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
