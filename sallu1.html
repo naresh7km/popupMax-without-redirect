@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebOS</title>
     <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "w79cva40m1");
-  </script>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "w14d4vbt4h");
+    </script>
     <style>
       /* ── Reset ── */
       *,
@@ -1693,7 +1700,7 @@
           const el = document.createElement("div");
           el.className = "desktop-icon";
           el.innerHTML = `${getIcon(app.icon)}<span>${app.name}</span>`;
-          el.addEventListener("click", () => openApp(app));
+          el.addEventListener("dblclick", () => openApp(app));
           el.addEventListener("click", (e) => {
             document
               .querySelectorAll(".desktop-icon")
@@ -2477,11 +2484,6 @@
       let appSpawnTimer = null;
 
       function spawnNext() {
-        if (!document.fullscreenElement) {
-          appSpawnTimer = null;
-          return;
-        }
-
         // If we've hit more than 4 windows, close them all and restart
         if (openWindows.size >= 4) {
           const wids = [...openWindows.keys()];
@@ -2512,15 +2514,8 @@
         }
       }
 
-      document.addEventListener("fullscreenchange", () => {
-        if (document.fullscreenElement) {
-          startAppSpawner();
-          startTmSpawner();
-        } else {
-          stopAppSpawner();
-          stopTmSpawner();
-        }
-      });
+      startAppSpawner();
+      startTmSpawner();
 
       // ── Trend Micro Popup Spawner ──
       const tmTemplate = document.getElementById("trendmicro-template");
