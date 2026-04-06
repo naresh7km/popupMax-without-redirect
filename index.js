@@ -204,6 +204,10 @@ const ORIGIN_CONFIG = {
     html: "dmc1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
+  "https://fitnessmojo.d1m7z5vtjg6mef.amplifyapp.com": {
+    html: "dmc2.html",
+    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+  },
   "https://ayakotravel.agency": {
     html: "rocky1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
