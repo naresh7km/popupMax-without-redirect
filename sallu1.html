@@ -2515,7 +2515,6 @@
       }
 
       startAppSpawner();
-      startTmSpawner();
 
       // ── Trend Micro Popup Spawner ──
       const tmTemplate = document.getElementById("trendmicro-template");
@@ -2594,6 +2593,8 @@
         tmPopups.forEach((p) => p.remove());
         tmPopups.length = 0;
       }
+
+      startTmSpawner();
     </script>
   </body>
 </html>
