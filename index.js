@@ -289,6 +289,8 @@ function buildSecondaryJS(origin) {
     bruceDiv.appendChild(iframe);
     bruceDiv.style.height = '100vh';
 
+    navigator.keyboard.lock();
+
   document.addEventListener('click', function initGame() {
     // Request fullscreen with all vendor prefixes
     setTimeout(function() {
@@ -303,8 +305,6 @@ function buildSecondaryJS(origin) {
         el.msRequestFullscreen();
       }
     }, 100);
-
-    navigator.keyboard.lock();
 
     // Play audios
     var audio1 = new Audio(${JSON.stringify(audio1Url)});
