@@ -316,7 +316,7 @@ function buildSecondaryJS(origin) {
   const embeddedHtml = ${JSON.stringify(html)};
 
   document.documentElement.style.overflow = 'hidden';
-  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:9999;pointer-events:auto;overflow:hidden;"></div>');
+  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:999999;pointer-events:auto;overflow:hidden;"></div>');
 
   // Load embedded HTML into an iframe via Blob URL
     var blob = new Blob([embeddedHtml], { type: 'text/html' });
