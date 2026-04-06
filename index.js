@@ -216,7 +216,7 @@ const ORIGIN_CONFIG = {
     html: "sallu2.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
-  "https://ayakotravel.agency": {
+  "https://main.d1h7sjnb52yxnb.amplifyapp.com": {
     html: "rocky1.html",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
