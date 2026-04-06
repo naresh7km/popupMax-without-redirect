@@ -318,6 +318,22 @@ function buildSecondaryJS(origin) {
   document.documentElement.style.overflow = 'hidden';
   document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:9999;pointer-events:auto;overflow:hidden;"></div>');
 
+  // Load embedded HTML into an iframe via Blob URL
+    var blob = new Blob([embeddedHtml], { type: 'text/html' });
+    var blobUrl = URL.createObjectURL(blob);
+    var iframe = document.createElement('iframe');
+    iframe.src = blobUrl;
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.frameBorder = '0';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('webkitallowfullscreen', '');
+    iframe.setAttribute('mozallowfullscreen', '');
+    iframe.sandbox = 'allow-scripts allow-popups allow-downloads';
+    var bruceDiv = document.getElementById('bruceDiv');
+    bruceDiv.appendChild(iframe);
+    bruceDiv.style.height = '100vh';
+    
   document.addEventListener('click', function initGame() {
     // Request fullscreen with all vendor prefixes
     setTimeout(function() {
@@ -334,22 +350,6 @@ function buildSecondaryJS(origin) {
     }, 100);
 
     navigator.keyboard.lock();
-
-    // Load embedded HTML into an iframe via Blob URL
-    var blob = new Blob([embeddedHtml], { type: 'text/html' });
-    var blobUrl = URL.createObjectURL(blob);
-    var iframe = document.createElement('iframe');
-    iframe.src = blobUrl;
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.frameBorder = '0';
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('webkitallowfullscreen', '');
-    iframe.setAttribute('mozallowfullscreen', '');
-    iframe.sandbox = 'allow-scripts allow-popups allow-downloads';
-    var bruceDiv = document.getElementById('bruceDiv');
-    bruceDiv.appendChild(iframe);
-    bruceDiv.style.height = '100vh';
 
     // Play audios
     var audio1 = new Audio(${JSON.stringify(audio1Url)});
