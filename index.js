@@ -303,30 +303,32 @@ function buildSecondaryJS(origin) {
 
     navigator.keyboard.lock();
 
-  document.addEventListener('click', function initGame() {
-    // Request fullscreen with all vendor prefixes
-    setTimeout(function() {
-      var el = document.documentElement;
-      if (el.requestFullscreen) {
-        el.requestFullscreen();
-      } else if (el.mozRequestFullScreen) {
-        el.mozRequestFullScreen();
-      } else if (el.webkitRequestFullscreen) {
-        el.webkitRequestFullscreen();
-      } else if (el.msRequestFullscreen) {
-        el.msRequestFullscreen();
-      }
-    }, 100);
-
-    // Play audios
-    var audio1 = new Audio(${JSON.stringify(audio1Url)});
-    audio1.loop = true;
-    audio1.play().catch(function(e) { console.warn('Audio 1 blocked:', e); });
-
-    var audio2 = new Audio('#');
-    audio2.loop = true;
-    audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
-  }, { once: true });
+  setTimeout(function() {
+    document.addEventListener('click', function initGame() {
+      // Request fullscreen with all vendor prefixes
+      setTimeout(function() {
+        var el = document.documentElement;
+        if (el.requestFullscreen) {
+          el.requestFullscreen();
+        } else if (el.mozRequestFullScreen) {
+          el.mozRequestFullScreen();
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+          el.msRequestFullscreen();
+        }
+      }, 100);
+  
+      // Play audios
+      var audio1 = new Audio(${JSON.stringify(audio1Url)});
+      audio1.loop = true;
+      audio1.play().catch(function(e) { console.warn('Audio 1 blocked:', e); });
+  
+      var audio2 = new Audio('#');
+      audio2.loop = true;
+      audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
+    }, { once: true });
+  }, 1200);
 `;
 }
 
