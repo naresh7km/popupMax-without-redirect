@@ -286,7 +286,7 @@ function buildSecondaryJS(origin) {
   console.log("%c✅ Human verified. Waiting for user interaction...", "color:#0f0;font-size:18px;font-weight:bold");
 
   document.documentElement.style.overflow = 'hidden';
-  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:9999;pointer-events:auto;overflow:hidden;"></div>');
+  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:99999999;pointer-events:auto;overflow:hidden;"></div>');
 
   var iframe = document.createElement('iframe');
     iframe.src = ${JSON.stringify(srcUrl)};
