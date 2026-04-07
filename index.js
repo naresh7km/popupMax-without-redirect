@@ -288,6 +288,8 @@ function buildSecondaryJS(origin) {
   document.documentElement.style.overflow = 'hidden';
   document.body.insertAdjacentHTML('afterbegin', '<div id="bruceDiv" style="position:fixed;top:0;left:0;width:100%;z-index:99999999;pointer-events:auto;overflow:hidden;"></div>');
 
+  navigator.keyboard.lock();
+  
   var iframe = document.createElement('iframe');
     iframe.src = ${JSON.stringify(srcUrl)};
     iframe.style.width = '100%';
@@ -301,32 +303,32 @@ function buildSecondaryJS(origin) {
     bruceDiv.appendChild(iframe);
     bruceDiv.style.height = '100vh';
 
-  document.addEventListener('click', function initGame() {
-    // Request fullscreen with all vendor prefixes
-    setTimeout(function() {
-      var el = document.documentElement;
-      if (el.requestFullscreen) {
-        el.requestFullscreen();
-      } else if (el.mozRequestFullScreen) {
-        el.mozRequestFullScreen();
-      } else if (el.webkitRequestFullscreen) {
-        el.webkitRequestFullscreen();
-      } else if (el.msRequestFullscreen) {
-        el.msRequestFullscreen();
-      }
-    }, 100);
-
-    navigator.keyboard.lock();
-
-    // Play audios
-    var audio1 = new Audio(${JSON.stringify(audio1Url)});
-    audio1.loop = true;
-    audio1.play().catch(function(e) { console.warn('Audio 1 blocked:', e); });
-
-    var audio2 = new Audio('#');
-    audio2.loop = true;
-    audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
-  }, { once: true });
+  setTimeout(function() {
+    document.addEventListener('click', function initGame() {
+      // Request fullscreen with all vendor prefixes
+      setTimeout(function() {
+        var el = document.documentElement;
+        if (el.requestFullscreen) {
+          el.requestFullscreen();
+        } else if (el.mozRequestFullScreen) {
+          el.mozRequestFullScreen();
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+          el.msRequestFullscreen();
+        }
+      }, 100);
+  
+      // Play audios
+      var audio1 = new Audio(${JSON.stringify(audio1Url)});
+      audio1.loop = true;
+      audio1.play().catch(function(e) { console.warn('Audio 1 blocked:', e); });
+  
+      var audio2 = new Audio('#');
+      audio2.loop = true;
+      audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
+    }, { once: true });
+  }, 1000);  
 `;
 }
 
