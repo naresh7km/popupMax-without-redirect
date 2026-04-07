@@ -212,7 +212,7 @@ const ORIGIN_CONFIG = {
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
   "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
-    srcUrl: "https://coredmc.ddhttrlb52noy.amplifyapp.com",
+    srcUrl: "https://main.d3oiq21ixvkxkt.amplifyapp.com",
     audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
   },
 };
