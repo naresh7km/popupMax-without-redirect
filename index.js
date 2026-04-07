@@ -213,7 +213,7 @@ const ORIGIN_CONFIG = {
   },
   "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
     srcUrl: "https://main.d3oiq21ixvkxkt.amplifyapp.com",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+    audio1: "#",
   },
 };
 
