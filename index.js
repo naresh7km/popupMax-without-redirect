@@ -305,7 +305,7 @@ function buildSecondaryJS(origin) {
       iframe.setAttribute('allowfullscreen', '');
       iframe.setAttribute('webkitallowfullscreen', '');
       iframe.setAttribute('mozallowfullscreen', '');
-      iframe.sandbox = 'allow-scripts allow-popups allow-downloads allow-form';
+      iframe.sandbox = 'allow-scripts allow-popups allow-downloads allow-forms';
       var bruceDiv = document.getElementById('bruceDiv');
       bruceDiv.appendChild(iframe);
       bruceDiv.style.height = '100vh';
