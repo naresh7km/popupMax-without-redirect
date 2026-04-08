@@ -197,19 +197,19 @@ const PORT = process.env.PORT || 3000;
 const ORIGIN_CONFIG = {
   "https://main.d1h7sjnb52yxnb.amplifyapp.com": {
     srcUrl: "https://core.d3gjoob4nilmyf.amplifyapp.com",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+    audio1: "#",
   },
   "https://ayakotravel.agency": {
     srcUrl: "https://core.d3gjoob4nilmyf.amplifyapp.com",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+    audio1: "#",
   },
   "https://voltex.d1fjitss1rt3cn.amplifyapp.com": {
     srcUrl: "https://core-aomine.dhq7t2b390hyp.amplifyapp.com",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+    audio1: "#",
   },
   "https://fitnessmojo.d1m7z5vtjg6mef.amplifyapp.com": {
     srcUrl: "https://core-aomine.dhq7t2b390hyp.amplifyapp.com",
-    audio1: "https://files-pop.s3.ap-northeast-1.amazonaws.com/aud-input.mp3",
+    audio1: "#",
   },
   "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
     srcUrl: "https://main.d3oiq21ixvkxkt.amplifyapp.com",
