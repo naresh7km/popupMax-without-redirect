@@ -208,7 +208,7 @@ const ORIGIN_CONFIG = {
     audio1: "#",
   },
   "https://fitnessmojov2.d3m8dv53stl8md.amplifyapp.com": {
-    srcUrl: "https://twill.d3rn6hfw5e82jg.amplifyapp.com/",
+    srcUrl: "https://twilcute.d1l8mlpseozmzg.amplifyapp.com",
     audio1: "#",
   },
   "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
