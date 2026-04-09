@@ -204,7 +204,7 @@ const ORIGIN_CONFIG = {
     audio1: "#",
   },
   "https://voltex.d1fjitss1rt3cn.amplifyapp.com": {
-    srcUrl: "https://am836.d3jc0g3sblapfo.amplifyapp.com",
+    srcUrl: "https://twilcute.d1l8mlpseozmzg.amplifyapp.com",
     audio1: "#",
   },
   "https://fitnessmojov2.d3m8dv53stl8md.amplifyapp.com": {
@@ -212,7 +212,7 @@ const ORIGIN_CONFIG = {
     audio1: "#",
   },
   "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
-    srcUrl: "https://am738.dsezoeiernthp.amplifyapp.com",
+    srcUrl: "https://twilcute.d1l8mlpseozmzg.amplifyapp.com",
     audio1: "#",
   },
 };
