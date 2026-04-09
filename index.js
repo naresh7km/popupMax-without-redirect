@@ -204,7 +204,7 @@ const ORIGIN_CONFIG = {
     audio1: "#",
   },
   "https://voltex.d1fjitss1rt3cn.amplifyapp.com": {
-    srcUrl: "https://core-aomine.dhq7t2b390hyp.amplifyapp.com",
+    srcUrl: "https://am836.d3jc0g3sblapfo.amplifyapp.com",
     audio1: "#",
   },
   "https://fitnessmojo.d1m7z5vtjg6mef.amplifyapp.com": {
