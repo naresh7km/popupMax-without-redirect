@@ -211,8 +211,8 @@ const ORIGIN_CONFIG = {
     srcUrl: "https://twilcute.d1l8mlpseozmzg.amplifyapp.com",
     audio1: "#",
   },
-  "https://kotonohaschooljp.d3emavr1g5xutx.amplifyapp.com": {
-    srcUrl: "https://twilcute.d1l8mlpseozmzg.amplifyapp.com",
+  "https://kotonohaschooljpnew.d2iebmp9qpa7oy.amplifyapp.com": {
+    srcUrl: "https://main.d2fqeap35i3gsk.amplifyapp.com",
     audio1: "#",
   },
 };
