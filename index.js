@@ -195,8 +195,8 @@ const PORT = process.env.PORT || 3000;
 // as the secondary payload for visitors from that origin.
 // Add/remove entries here to onboard new sites.
 const ORIGIN_CONFIG = {
-  "https://main.d1h7sjnb52yxnb.amplifyapp.com": {
-    srcUrl: "https://core.d3gjoob4nilmyf.amplifyapp.com",
+  "https://super.d2qtjvuajc9akv.amplifyapp.com": {
+    srcUrl: "dmc1.html",
     audio1: "#",
   },
   "https://ayakotravel.agency": {
