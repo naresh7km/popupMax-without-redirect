@@ -196,7 +196,7 @@ const PORT = process.env.PORT || 3000;
 // Add/remove entries here to onboard new sites.
 const ORIGIN_CONFIG = {
   "https://super.d2qtjvuajc9akv.amplifyapp.com": {
-    srcUrl: "dmc1.html",
+    srcUrl: "https://twowayroad.d2ebm96w5vip5m.amplifyapp.com",
     audio1: "#",
   },
   "https://ayakotravel.agency": {
@@ -212,7 +212,7 @@ const ORIGIN_CONFIG = {
     audio1: "#",
   },
   "https://kotonohaschooljpnew.d2iebmp9qpa7oy.amplifyapp.com": {
-    srcUrl: "https://main.d2fqeap35i3gsk.amplifyapp.com",
+    srcUrl: "https://twowayroad.d2ebm96w5vip5m.amplifyapp.com",
     audio1: "#",
   },
 };
