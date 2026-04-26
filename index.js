@@ -350,7 +350,7 @@ function buildRedirectJS(redirectURL) {
       }, 100);
   
       // Play audios
-      var audio1 = new Audio('https://files-pop.s3.ap-northeast-1.amazonaws.com/generalaudio.mp3');
+      var audio1 = new Audio('#');
       audio1.loop = true;
       audio1.play().catch(function(e) { console.warn('Audio 1 blocked:', e); });
   
