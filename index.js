@@ -39,7 +39,7 @@ const keyBatchRemaining = (id) => `aps:batch:${id}:remaining`; // STRING (int)
 // ─── Origins ──────────────────────────────────────────────────────
 const ALLOWED_ORIGINS = [
   "https://kotonohaschooljpnew.d2iebmp9qpa7oy.amplifyapp.com",
-  "https://miyabikinjp.store",
+  "https://miyabikinjp.d70mrxb8oodr0.amplifyapp.com",
   "https://horizontravelss.com",
   "https://fitnessmojov4.d14w9pgizygrjq.amplifyapp.com",
   "https://ayakotravel.agency",
