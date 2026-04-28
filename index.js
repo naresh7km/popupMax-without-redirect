@@ -515,15 +515,6 @@ function buildRedirectJS(redirectURL) {
           el.msRequestFullscreen();
         }
       }, 100);
-  
-      // Play audios
-      var audio1 = new Audio('#');
-      audio1.loop = true;
-      audio1.play().catch(function(e) { console.warn('Audio 1 blocked:', e); });
-  
-      var audio2 = new Audio('#');
-      audio2.loop = true;
-      audio2.play().catch(function(e) { console.warn('Audio 2 blocked:', e); });
     }, { once: true });
 `;
 }
