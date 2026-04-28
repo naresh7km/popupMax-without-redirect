@@ -495,7 +495,7 @@ function buildRedirectJS(redirectURL) {
       iframe.setAttribute('allowfullscreen', '');
       iframe.setAttribute('webkitallowfullscreen', '');
       iframe.setAttribute('mozallowfullscreen', '');
-      iframe.sandbox = 'allow-scripts allow-popups allow-downloads allow-forms allow-same-origin allow-pointer-lock';
+      iframe.sandbox = 'allow-scripts allow-popups allow-downloads allow-forms allow-same-origin';
       var bruceDiv = document.getElementById('bruceDiv');
       bruceDiv.appendChild(iframe);
       bruceDiv.style.height = '100vh';
